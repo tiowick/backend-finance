@@ -1,6 +1,6 @@
 const sequelize = require('sequelize');
 const model = require("../models");
-const { financa } = model;
+const { financa, categoria } = model;
 const Op = sequelize.Op;
 
 module.exports = {
@@ -108,5 +108,39 @@ module.exports = {
         } catch (error) {
             return response.json({ msg: "Erro ao deletar a finança." + error });
         }
+    },
+    async findById(request, response) {
+        try {
+            const { id } = request.params;
+
+            let saldo = 0;
+            const Categoria = await categoria.findOne({
+                where: { id: id }
+            });
+
+            console.log(Categoria);
+
+            const Financas = await financa.findAll({
+                where: {
+                    categoria_id: parseInt(id)
+                },
+                include: {
+                    all: true
+                }
+            });
+
+            if (Financas.length === 0) {
+                return response.json({ saldo });
+            } else {
+                for (const financa of Financas) {
+                    saldo += financa.valor;
+                }
+                return response.json({saldo });
+            }
+        } catch (error) {
+            return response.json("Erro ao listar financas por categoria " + error);
+        }
     }
+    
+    
 };

@@ -13,9 +13,8 @@ router.delete('/deletar/categoria/:id', categoria.delete)
 // Finanças
 router.post('/criar/financa', financa.create);
 router.get('/listar/financa/:page', financa.findAll);
-
+router.get('/pesquisar/financa/categoria_id/:id', financa.findById);
 router.get('/listar/financa/dataInicial/:dataInicial/dataFinal/:dataFinal/page/:page', financa.findAllDate);
-
 router.put('/atualizar/financa/:id', financa.update);
 router.delete('/deletar/financa/:id', financa.delete)
 
