@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   financa.init({
-    data: DataTypes.DATE,
+    data: DataTypes.DATEONLY,
     categoria_id: DataTypes.INTEGER,
     titulo: DataTypes.STRING,
     valor: DataTypes.DOUBLE

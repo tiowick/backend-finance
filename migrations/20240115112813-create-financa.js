@@ -11,7 +11,7 @@ module.exports = {
       },
       data: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         validate: {
           notEmpty: { msg: "Campo data não pode ser vazio." },
         },
